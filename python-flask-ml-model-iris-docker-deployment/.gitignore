@@ -1,0 +1,38 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Logs
+*.log
+
+# IDE / Editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model files
+*.pkl
+*.joblib
+*.h5
+
+# Docker artifacts
+*.tar
+*.img
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Git
+.gitignore
