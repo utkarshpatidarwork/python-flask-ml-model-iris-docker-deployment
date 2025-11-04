@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ML Model Predictor</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        input { width: 100px; margin: 5px; }
+        button { margin-top: 15px; padding: 8px 15px; }
+        #result { margin-top: 20px; font-size: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2>ML Model Prediction (Flask + Docker)</h2>
+
+<label>Feature 1: <input type="number" id="f1" step="0.01"></label><br>
+<label>Feature 2: <input type="number" id="f2" step="0.01"></label><br>
+<label>Feature 3: <input type="number" id="f3" step="0.01"></label><br>
+<label>Feature 4: <input type="number" id="f4" step="0.01"></label><br>
+
+<button onclick="sendRequest()">Predict</button>
+
+<div id="result"></div>
+
+<script>
+function sendRequest() {
+    const data = {
+        features: [
+            parseFloat(document.getElementById("f1").value),
+            parseFloat(document.getElementById("f2").value),
+            parseFloat(document.getElementById("f3").value),
+            parseFloat(document.getElementById("f4").value)
+        ]
+    };
+
+    fetch("http://localhost:8002/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+        document.getElementById("result").innerHTML = "Prediction: " + res.prediction;
+    })
+    .catch(err => {
+        document.getElementById("result").innerHTML = "Error: " + err;
+    });
+}
+</script>
+
+</body>
+</html>
